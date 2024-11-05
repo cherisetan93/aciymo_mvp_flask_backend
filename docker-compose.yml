@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mvp_product_backend:
+    container_name: aciymo_mvp_product_flask_backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5800:5800"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python app.py
+
+networks:
+  shared_network:
+    external: true

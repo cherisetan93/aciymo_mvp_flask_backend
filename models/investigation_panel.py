@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 load_dotenv() 
 ES_DB_URL = os.getenv('ES_DB_URL', 'localhost:5601') 
 
+# Database Query fr Investigation Panel
+# Sample written to be modified.
 class InvestigationPanel(object):
     def __init__(self):
         self.db = ES_DB_URL

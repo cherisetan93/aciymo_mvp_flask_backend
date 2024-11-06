@@ -62,7 +62,7 @@ def get_summary_of_all_plant_process_alerts():
 
 
 # API Service that provides Alert-Types Summary for given Process Number (User Story 2)
-@alert_management_services.route('/api/v0/summary-of-given-plant-process-alerts/<int:process_number>', methods=['GET'])
+@alert_management_services.route('/api/v0/summary_of_alerts_per_plant_process/<int:process_number>', methods=['GET'])
 def get_summary_of_given_plant_process_alerts(process_number):
     try:
         # Successfully return data. (Once connection with ES is ready)

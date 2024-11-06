@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 load_dotenv() 
 ES_DB_URL = os.getenv('ES_DB_URL', 'localhost:5601') 
 
+# Database Query fr Alert Management
+# Sample written to be modified.
 class AlertManagement(object):
     def __init__(self):
         self.db = ES_DB_URL

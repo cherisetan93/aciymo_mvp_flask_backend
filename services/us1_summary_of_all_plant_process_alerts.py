@@ -1,19 +1,31 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, request, jsonify
 from werkzeug.exceptions import BadRequest, Unauthorized, Forbidden, NotFound, InternalServerError, ServiceUnavailable, GatewayTimeout
-from models import investigation_panel  # call model file
+from models import alert_management  # call model file
 from loggers.logger import logger
 
-investigation_panel = investigation_panel.InvestigationPanel()
-investigation_panel_services = Blueprint('investigation_panel_apis', __name__)
+alert_management = alert_management.AlertManagement()
+alert_management_us1_services = Blueprint('alert_management_us1_apis', __name__)
 
-# Investigation Panel Routes
-# Sample written to be modified.
-@investigation_panel_services.route('/investigation_panels/', methods=['GET'])
-def get_investigation_panels():
+# Alert Management Routes
+
+# API Service that provides Overview of Plant-Process Alerts (User Story 1)
+@alert_management_us1_services.route('/api/v0/summary-of-all-plant-process-alerts/', methods=['GET'])
+def get_summary_of_all_plant_process_alerts():
     try:
-        # Successfully return data
-        response = jsonify(investigation_panel.select({}))
-        logger.info('Response 200: Successfully retrieve investigation_panel information.')
+        # Successfully return data. (Once connection with ES is ready)
+        # response = jsonify(alert_management.count_summary_of_process_alerts())
+
+        # Hardcoded dummy response back from ES.
+        output = {
+                    "process_1": 4,
+                    "process_2": 0,
+                    "process_3": 3,
+                    "process_4": 0,
+                    "process_5": 0,
+                    "process_6": 0
+                }
+        response = jsonify(output)
+        logger.info('Response 200: Successfully retrieve alert management information.')
         return response, 200
     except BadRequest:
         # Handle 400 Bad Request error
